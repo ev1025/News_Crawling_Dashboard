@@ -23,7 +23,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 # 탭 생성
 tabs = st.tabs(["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"])
 
