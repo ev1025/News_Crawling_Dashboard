@@ -8,3 +8,4 @@ def render_page(change_page):
     st.title("주식")
     if st.button("홈으로 이동"):
         change_page("home")
+        
