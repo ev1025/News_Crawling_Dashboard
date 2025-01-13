@@ -1,11 +1,11 @@
 import streamlit as st
 from tabs import politic_tab, economic_tab, local_tab, lifestyle_tab, it_science_tab, world_tab
-from state import initialize_state
 
-# 앱 초기화
-initialize_state()
+# 세션 상태로 현재 페이지 저장
+if "page" not in st.session_state:
+    st.session_state.page = "news_crawling"
 
-# 앱 제목
+# 탭 제목
 st.title("News Crawling Dashboard")
 
 # 탭 생성
