@@ -4,5 +4,7 @@ import streamlit as st
 if "page" not in st.session_state:
     st.session_state.page = "stock"
 
-st.title("주식")
-st.write("이곳은 주식페이지입니다.")
+def render_page(change_page):
+    st.title("주식")
+    if st.button("홈으로 이동"):
+        change_page("home")
