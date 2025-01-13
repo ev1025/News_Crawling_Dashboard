@@ -8,6 +8,22 @@ if "page" not in st.session_state:
 # 탭 제목
 st.title("News Crawling Dashboard")
 
+# CSS 스타일 정의
+st.markdown(
+    """
+    <style>
+    .stTabs {
+        display: flex;
+        justify-content: space-between;  /* 탭 간의 간격을 조정 */
+    }
+    .stTabs > div {
+        flex: 1;  /* 모든 탭의 넓이를 동일하게 설정 */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # 탭 생성
 tabs = st.tabs(["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"])
 
