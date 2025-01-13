@@ -6,10 +6,10 @@ from state import initialize_state
 initialize_state()
 
 # 앱 제목
-st.title("My Interactive Dashboard")
+st.title("News Crawling Dashboard")
 
 # 탭 생성
-tabs = st.tabs(["News Politics", "News Economics", "News Local", "News Lifestyle", "News It&Science", "News World"])
+tabs = st.tabs(["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"])
 
 # 각 탭 실행
 with tabs[0]:
