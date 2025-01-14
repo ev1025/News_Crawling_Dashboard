@@ -51,7 +51,7 @@ def render_page(change_page):
 
     # 주식 data 로드
     # CSV 파일을 데이터프레임으로 읽기
-    ddv_df = pd.read_csv("merged.csv")
+    ddv_df = pd.read_csv("./csv/merged.csv")
     # 데이터프레임을 화면에 표시
     st.dataframe(ddv_df)
     
@@ -62,7 +62,7 @@ def render_page(change_page):
 
     # 파일 읽기
     try:
-        df = pd.read_csv("merged.csv")
+        df = pd.read_csv("./csv/merged.csv")
     except ValueError as e:
         st.error(f"파일을 읽는 중 오류가 발생했습니다: {e}")
         return  # 오류 발생 시 함수 종료
