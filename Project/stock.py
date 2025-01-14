@@ -79,7 +79,7 @@ def render_page(change_page):
         st.title("Stock Chart")
         company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG ensol"], key="stock_company")
         ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG ensol": "LG ensol"}[company]
-        st.markdown('Tickers Link : [All Stock Symbols]')
+        st.markdown('^마크다운^')
         start_date = st.date_input("시작 날짜: ", value=pd.to_datetime("2023-01-01"), key="stock_start_date")
         end_date = st.date_input("종료 날짜: ", value=pd.to_datetime("2025-01-01"), key="stock_end_date")
         
@@ -96,6 +96,8 @@ def render_page(change_page):
         company_df['localDate'] = company_df['localDate'].dt.date
         
         # 'localDate'를 'YYYY-MM' 형식으로 변환
+        monthly_data = company_df.copy()  # monthly_data를 초기화
+        monthly_data['localDate'] = pd.to_datetime(monthly_data['localDate'])
         monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
         
         # Line Chart, Candle Stick 선택형으로 만들기
@@ -135,7 +137,7 @@ def render_page(change_page):
         monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
         
         # 데이터프레임 출력
-        st.dataframe(monthly_data['openPrice', 'closePrice', 'Return'], use_container_width=True)
+        st.dataframe(monthly_data[['openPrice', 'closePrice', 'Return']], use_container_width=True)
 
         # Line Chart, Candle Stick 선택형으로 만들기
         chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="return_chart_type")
