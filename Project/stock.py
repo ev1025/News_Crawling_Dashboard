@@ -55,37 +55,68 @@ def render_page(change_page):
     # 데이터프레임을 화면에 표시
     st.dataframe(ddv_df)
     
-    st.title("tab2수익률차트")
+    # 주식 & 수익률차트 탭
+    st.title("주식 & 수익률차트")
     # 탭 생성
     tab1, tab2 = st.tabs(["주식 차트", "수익률 차트"])
 
+    # 파일 읽기
+    try:
+        df = pd.read_csv("merged.csv")
+    except ValueError as e:
+        st.error(f"파일을 읽는 중 오류가 발생했습니다: {e}")
+        return  # 오류 발생 시 함수 종료
+    except FileNotFoundError:
+        st.error("지정한 경로에 파일이 존재하지 않습니다.")
+        return  # 오류 발생 시 함수 종료
+
+    # 'localDate' 열을 datetime 형식으로 변환
+    df['localDate'] = pd.to_datetime(df['localDate'], errors='coerce')
+
+    # 탭 1: 주식 차트
     with tab1:
-        st.write("미정임다.")  # 탭에 추가할 내용
+        # 회사 선택 및 날짜 입력
+        st.title("Stock Chart")
+        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG Energy Solution"], key="stock_company")
+        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG Energy Solution": "LG Energy Solution"}[company]
+        st.markdown('Tickers Link : [All Stock Symbols]')
+        start_date = st.date_input("시작 날짜: ", value=pd.to_datetime("2023-01-01"), key="stock_start_date")
+        end_date = st.date_input("종료 날짜: ", value=pd.to_datetime("2025-01-01"), key="stock_end_date")
+        
+        # 선택한 회사에 해당하는 데이터만 필터링
+        company_df = df[df['Company'] == ticker]
 
+        if company_df.empty:
+            st.warning(f"{company}에 대한 데이터가 없습니다.")
+            return
+
+        st.dataframe(company_df, use_container_width=True)  # 선택한 회사의 데이터 출력
+
+        # 날짜 부분만 추출하여 새로운 열에 저장
+        company_df['localDate'] = company_df['localDate'].dt.date
+        
+        # Line Chart, Candle Stick 선택형으로 만들기
+        chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="stock_chart_type")
+        candlestick = go.Candlestick(x=company_df['localDate'], open=company_df['openPrice'], high=company_df['highPrice'], low=company_df['lowPrice'], close=company_df['closePrice'])
+        line = go.Scatter(x=company_df['localDate'], y=company_df['closePrice'], mode='lines', name='Close')
+
+        if chart_type == "Candle_Stick":
+            fig = go.Figure(candlestick)
+        elif chart_type == "Line":
+            fig = go.Figure(line)
+        else:
+            st.error("error")
+
+        fig.update_layout(title=f"{company} {chart_type} Chart", xaxis_title="Date", yaxis_title="Price")
+        st.plotly_chart(fig)
+
+    # 탭 2: 수익률 차트
     with tab2:
-        st.sidebar.title("Stock Chart")
-        company = st.sidebar.selectbox("Select Company", ["Samsung", "SK hynix", "LG ensol"])
-        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG ensol": "LG ensol"}[company]
-        st.sidebar.markdown('Tickers Link : [All Stock Symbols]')
-        start_date = st.sidebar.date_input("시작 날짜: ", value=pd.to_datetime("2023-01-01"))
-        end_date = st.sidebar.date_input("종료 날짜: ", value=pd.to_datetime("2025-01-01"))
-
-        if st.button("홈으로 이동"):
-            change_page("home")
-
-        # 파일 읽기
-        try:
-            df = pd.read_csv("merged.csv")
-        except ValueError as e:
-            st.error(f"CSV 파일을 읽는 중 오류가 발생했습니다: {e}")
-            return  # 오류 발생 시 함수 종료
-        except FileNotFoundError:
-            st.error("지정한 경로에 파일이 존재하지 않습니다.")
-            return  # 오류 발생 시 함수 종료
-
-        # 'localDate' 열을 datetime 형식으로 변환
-        df['localDate'] = pd.to_datetime(df['localDate'], errors='coerce')
-
+        # 회사 선택 및 날짜 입력
+        st.title("Return Chart")
+        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG Energy Solution"], key="return_company")
+        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG Energy Solution": "LG Energy Solution"}[company]
+        
         # 선택한 회사에 해당하는 데이터만 필터링
         company_df = df[df['Company'] == ticker]  
 
@@ -99,22 +130,22 @@ def render_page(change_page):
 
         # 'localDate'를 'YYYY-MM' 형식으로 변환
         monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
-    
+        
         # 데이터프레임 출력
         st.dataframe(monthly_data, use_container_width=True)
 
         # Line Chart, Candle Stick 선택형으로 만들기
-        chart_type = st.sidebar.radio("Select Chart Type", ("Candle_Stick", "Line"))
-    
+        chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="return_chart_type")
+        
         # 수익률을 y축으로 사용하는 차트 생성
         if chart_type == "Candle_Stick":
             candlestick = go.Candlestick(
-            x=monthly_data['localDate'],
-            open=monthly_data['openPrice'],
-            high=monthly_data['highPrice'],  # 고가
-            low=monthly_data['lowPrice'],     # 저가
-            close=monthly_data['closePrice']
-        )
+                x=monthly_data['localDate'],
+                open=monthly_data['openPrice'],
+                high=monthly_data['highPrice'],  # 고가
+                low=monthly_data['lowPrice'],     # 저가
+                close=monthly_data['closePrice']
+            )
             fig = go.Figure(candlestick)
         elif chart_type == "Line":
             line = go.Scatter(x=monthly_data['localDate'], y=monthly_data['Return_Value'], mode='lines', name='Return')
@@ -125,15 +156,6 @@ def render_page(change_page):
         fig.update_layout(title=f"{company} {chart_type} Chart", xaxis_title="Date", yaxis_title="Return (%)")
         st.plotly_chart(fig)
 
-        st.markdown("<hr>", unsafe_allow_html=True)  # 구분선 추가
-
-       # 숫자를 넣을 수 있는 영역 생성
-        if len(monthly_data) > 0:
-            num_row = st.sidebar.number_input("Number of Rows", min_value=1, max_value=len(monthly_data))
-            # 최근 날짜부터 결과값 보여줌
-            st.dataframe(monthly_data[-num_row:].reset_index(drop=True).sort_values(by='localDate', ascending=False))
-        else:
-            st.warning("선택한 회사에 대한 데이터가 없습니다.")
     # 주식차트 
-    # if __name__ == "__stock__":
-    #     render_page(change_page)
+    if __name__ == "__stock__":
+        render_page(change_page)
