@@ -51,7 +51,7 @@ def render_page(change_page):
 
     # 주식 data 로드
     # CSV 파일을 데이터프레임으로 읽기
-    ddv_df = pd.read_csv("./sample1.csv")
+    ddv_df = pd.read_csv("merged.csv")
     # 데이터프레임을 화면에 표시
     st.dataframe(ddv_df)
     
@@ -77,8 +77,8 @@ def render_page(change_page):
     with tab1:
         # 회사 선택 및 날짜 입력
         st.title("Stock Chart")
-        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG Energy Solution"], key="stock_company")
-        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG Energy Solution": "LG Energy Solution"}[company]
+        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG ensol"], key="stock_company")
+        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG ensol": "LG ensol"}[company]
         st.markdown('Tickers Link : [All Stock Symbols]')
         start_date = st.date_input("시작 날짜: ", value=pd.to_datetime("2023-01-01"), key="stock_start_date")
         end_date = st.date_input("종료 날짜: ", value=pd.to_datetime("2025-01-01"), key="stock_end_date")
@@ -94,6 +94,9 @@ def render_page(change_page):
 
         # 날짜 부분만 추출하여 새로운 열에 저장
         company_df['localDate'] = company_df['localDate'].dt.date
+        
+        # 'localDate'를 'YYYY-MM' 형식으로 변환
+        monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
         
         # Line Chart, Candle Stick 선택형으로 만들기
         chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="stock_chart_type")
@@ -114,8 +117,8 @@ def render_page(change_page):
     with tab2:
         # 회사 선택 및 날짜 입력
         st.title("Return Chart")
-        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG Energy Solution"], key="return_company")
-        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG Energy Solution": "LG Energy Solution"}[company]
+        company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG ensol"], key="return_company")
+        ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG ensol": "LG ensol"}[company]
         
         # 선택한 회사에 해당하는 데이터만 필터링
         company_df = df[df['Company'] == ticker]  
@@ -132,7 +135,7 @@ def render_page(change_page):
         monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
         
         # 데이터프레임 출력
-        st.dataframe(monthly_data, use_container_width=True)
+        st.dataframe(monthly_data['openPrice', 'closePrice', 'Return'], use_container_width=True)
 
         # Line Chart, Candle Stick 선택형으로 만들기
         chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="return_chart_type")
