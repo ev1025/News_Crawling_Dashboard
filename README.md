@@ -1,15 +1,17 @@
 # News_Crawling_Dashboard
 
 # 데이터 소개
-### 1. 네이버 뉴스 데이터
+### 1. 네이버 뉴스
+url : https://news.naver.com/section/100
 #### 
-### 1. 코스피, 코스닥 데이터
+### 1. 코스피, 코스닥
 #### 최근 1년(2024-01-14 ~ 2025-01-14)간의 코스피, 코스닥 지수 데이터(csv) 다운로드
 #### columns : 날짜, 종가, 시가, 고가, 저가, 거래량, 변동 %
 - 코스피 : https://kr.investing.com/indices/kospi-historical-data
 - 코스닥 : https://kr.investing.com/indices/kospi-historical-data
   
-### 2. 네이버페이 증권 : https://m.stock.naver.com/domestic/capitalization/KOSPI
+### 2. 네이버페이 증권
+url : https://m.stock.naver.com/domestic/capitalization/KOSPI
 #### 시가총액 1,2,3순위(삼성전자, SK 하이닉스, LG 에너지솔루션)의 주가 크롤링 데이터(json)
 - 삼성 전자 : https://m.stock.naver.com/fchart/domestic/stock/005930
 - SK 하이닉스 : https://m.stock.naver.com/fchart/domestic/stock/000660
