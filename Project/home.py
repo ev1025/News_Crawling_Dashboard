@@ -12,7 +12,8 @@ def render_page(change_page):
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
     # 풍선 애니메이션 표시
-    st.balloons() 
+    if st.session_state.show_image:
+        st.balloons() 
         
     # 이미지 URL 또는 경로
     image_path = "./images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg"

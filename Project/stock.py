@@ -42,6 +42,7 @@ def render_page(change_page):
         col1, col2, col3 = st.columns(3)
 
         delta_value = f"{row['전일비']} ({row['등락률']})"
+        
         col1.metric(label="현재가", value=f"{row['현재가']}원", delta=delta_value)  
         col2.metric(label="거래량", value=row['거래량'])  
         col3.metric(label="시가", value=f"{row['시가']}원")  
@@ -62,7 +63,7 @@ def render_page(change_page):
     kosdaq = pd.read_csv('./csv/kosdaq.csv')
 
 
-    kospi['날짜'] = pd.to_datetime(kospi['날짜'])
+    #kospi['날짜'] = pd.to_datetime(kospi['날짜'])
 
     def num(x):
         return float(x.replace(',',''))
@@ -211,15 +212,17 @@ def render_page(change_page):
             st.warning(f"{company}에 대한 데이터가 없습니다.")
             return
 
-        st.dataframe(company_df, use_container_width=True)  # 선택한 회사의 데이터 출력
-
         # 날짜 부분만 추출하여 새로운 열에 저장
         company_df['localDate'] = company_df['localDate'].dt.date
-        
+
         # 'localDate'를 'YYYY-MM' 형식으로 변환
         monthly_data = company_df.copy()  # monthly_data를 초기화
         monthly_data['localDate'] = pd.to_datetime(monthly_data['localDate'])
+
+        # 'YYYY-MM' 형식으로 변환하고 초 단위를 제거
         monthly_data['localDate'] = monthly_data['localDate'].dt.strftime('%Y-%m')
+        
+        st.dataframe(company_df, use_container_width=True)  # 선택한 회사의 데이터 출력
         
         # Line Chart, Candle Stick 선택형으로 만들기
         chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"), key="stock_chart_type")
