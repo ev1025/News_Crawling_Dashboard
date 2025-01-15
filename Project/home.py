@@ -15,7 +15,7 @@ def render_page(change_page):
     # 이미지를 계속 보여주기
     st.image(image_path)
 
-    st.markdown("<h2 style='font-size: 30px;background:#e3f2e3;padding:5px 10px;margin:8px 0 10px 0;'>데이터 소개</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-size: 30px;background:#e3f2e3;padding:5px 10px;margin:8px 0 10px 0; color:black;'>데이터 소개</h2>", unsafe_allow_html=True)
     # 네이버 뉴스
     st.markdown("<h3 style='font-size: 24px;padding:15px 10px;'>1. 네이버 뉴스</h3>", unsafe_allow_html=True)
     st.markdown("""

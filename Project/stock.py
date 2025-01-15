@@ -43,8 +43,8 @@ def render_page(change_page):
 
         delta_value = f"{row['전일비']} ({row['등락률']})"
         col1.metric(label="현재가", value=f"{row['현재가']}원", delta=delta_value)  
-        col2.metric(label="거래량", value=row['거래량'], delta=row['거래량'])  
-        col3.metric(label="시가", value=f"{row['시가']}원", delta=row['시가'])  
+        col2.metric(label="거래량", value=row['거래량'])  
+        col3.metric(label="시가", value=f"{row['시가']}원")  
        
     # CSS로 폰트 크기 설정
     st.markdown("""
