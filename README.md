@@ -56,16 +56,21 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
    - 선택된 카테고리의 뉴스 크롤링 데이터를 활용하여 WordCloud 시각화 자료 생성
      -> 각 카테고리 별로 자주 언급되는 단어를 확인할 수 있음
    - 선택된 카테고리의 최신 뉴스를 예시로 5개 보여줌
-   - 워드 클라우드에 마우스 커서 기능? 추가
+   - 워드 클라우드에 호버 기능 추가
      ![image](https://github.com/user-attachments/assets/1eb67f61-3426-4d5a-a12a-df590599837d)
 
 - 
-3) 주가 데이터 화면
-  - Stock Dashboard
-  - 라디오 버튼으로 3사 중 하나를 선택하여 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음
-  - 3사의 데이터 프레임 내용(종가/시가/고가/저가 등) 확인 가능
-    -> 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
-  - 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+3) 수치 데이터 시각화 화면
+  - 주식 & 수익률 차트
+    - 라디오 버튼으로 3사 중 하나를 선택하여 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음(시작/종료 날짜 선택 가능)
+    - 3사의 데이터 프레임 내용(종가/시가/고가/저가 등) 확인 가능
+    - 수익률 탭?에서 시가와 종가의 차이를 데이터 프레임 형태로 확인할 수 있음
+      -> 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
+  <img width="539" alt="image" src="https://github.com/user-attachments/assets/67cfe0f5-0121-496b-a849-a1d9b0271b12" />
+
+  - 코스피 / 코스닥 지수 차트
+    - 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
     - 코스피 지수와 코스닥 지수 비교 가능
     - Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
+      ![newplot](https://github.com/user-attachments/assets/8814d0db-fc64-4340-90b9-96f352550ed9)
 
