@@ -23,8 +23,8 @@ def render_page(change_page):
     """)
     st.markdown("<h4 style='font-size: 20px;padding:10px;'>설명</h4>", unsafe_allow_html=True)
     st.markdown("""
-    - 설명을 작성해주세요
-    - 설명을 작성해주세요
+    - 네이버 뉴스의 실시간 뉴스 토픽을 알려드립니다.
+    - 궁금하신 테마를 선택하시면 AI가 해당 테마의 3가지 토픽과 최신 기사 5개를 확인해보세요.
     """)
 
     # 코스피, 코스닥 데이터 소개
