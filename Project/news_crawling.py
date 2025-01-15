@@ -1,6 +1,7 @@
-# pip install streamlit-wordcloud
+# pip install wordcloud
 import streamlit as st
 from modules.lda_wc_maker import make_lda_wc
+import time
 
 if "page" not in st.session_state:
     st.session_state.page = "news_crawling"
@@ -39,7 +40,9 @@ def render_page(change_page):
             for num in range(5):
                 st.subheader(f'{news_data[num]["title"]}')
                 st.text(f'{news_data[num]["body"]}')
-
+                a = st.success('완료')
+                time.sleep(1)
+                a.empty()
 
 
 

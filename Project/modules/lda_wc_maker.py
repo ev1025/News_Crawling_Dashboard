@@ -23,7 +23,7 @@ def lda_func(section, num_topics):
     news_data = start_crawling(section)
 
     # 불용어 리스트를 파일에서 읽기
-    with open('C:/Users/ENVY/Desktop/프로젝트/News/Project/modules/stopwords.txt', 'r', encoding='utf-8') as file:
+    with open('./text/stopwords.txt', 'r', encoding='utf-8') as file:
         stop_words = set(file.read().splitlines())  # 한 줄씩 읽어서 불용어 목록에 저장
 
     # 텍스트 토크나이저 정의 (한글만 추출하는 정규식)
