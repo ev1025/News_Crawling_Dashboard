@@ -12,16 +12,30 @@ def render_page(change_page):
 
     st.markdown("""
     <style>
+        /* 워드클라우드 호버 */
         [data-testid="stHorizontalBlock"] img {
-            transition: transform 0.3s ease;
+        transition: transform 0.3s ease;
         }
-
         [data-testid="stHorizontalBlock"] img:hover {
-            transform: scale(1.8);
+        transform: scale(1.8);
+        position: relative;
+        z-index: 9999;
         }
+                
+        /* 기사 더보기 */
         span.st-emotion-cache-pkbazv.e11k5jya0 > div[data-testid="stMarkdownContainer"] p {
-            color: #adb5bd;
-            text-decoration: underline;
+        text-decoration: underline;
+        }
+                
+        /* 토글 기사 제목 */ 
+        .st-emotion-cache-1wmy9hl.e1f1d6gn1 .st-emotion-cache-1puwf6r.e1nzilvr5 p {
+        font-size: 18px;
+        font-weight: bold;  
+        } 
+                
+        .stElementContainer.element-container.st-emotion-cache-3w7kxl.e1f1d6gn4 {
+        margin: 0px;
+        padding : 0px
         }
 </style>
     """, unsafe_allow_html=True)
@@ -30,19 +44,14 @@ def render_page(change_page):
     section_num = [i for i in range(100,106)]
     section_dict = dict(zip(section_list, section_num))
 
-    # 뉴스 토픽 분석 및 워드클라우드
-    st.image("images/nnews.png")
-    st.header('최신 뉴스 토픽', ) 
-
     # 오늘 날짜 가져오기
     today = datetime.date.today()
-
-    # 날짜 포맷 지정
     formatted_today = today.strftime("%Y-%m-%d")
-
-    # 포맷된 날짜 출력
+    
+    st.image("images/nnews.png")
+    st.header('최신 뉴스 토픽', ) 
     st.write("Today:", formatted_today)
-
+    
     section = st.selectbox("궁금하신 테마를 선택하세요.", section_list)
 
     if st.button("분석 시작"):
@@ -64,10 +73,8 @@ def render_page(change_page):
             time.sleep(1)
             a.empty()
             
-            st.page_link(f"https://news.naver.com/section/{section_dict[section]}", label=f"{section} 기사 더 보러 가기")
+            st.page_link(f"https://news.naver.com/section/{section_dict[section]}", label=f"{section}기사 보러 가기", icon='📰')
 
 
     if __name__ == "__news_crawling__":
         render_page(change_page)
-
-
