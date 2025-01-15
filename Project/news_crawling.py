@@ -17,7 +17,7 @@ def render_page(change_page):
         }
 
         [data-testid="stHorizontalBlock"] img:hover {
-            transform: scale(1.5);
+            transform: scale(1.8);
         }
     </style>
     """, unsafe_allow_html=True)
