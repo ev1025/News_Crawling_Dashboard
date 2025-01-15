@@ -54,11 +54,8 @@ def render_page(change_page):
     # 4. Plotly 이중 축 그래프 객체 생성
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
-
-    #Line Chart, Candle Stick 선택형으로 만들기
-    # chart_type = st.sidebar.radio("Select Chart Type", ("Candle_Stick", "Line"))
-    # 왼쪽에 라디오 버튼 추가
-    chart_type = st.radio("Select Chart Type", ("Candle_Stick", "Line"))
+   # selectbox 사용 (수평 선택 가능)
+    chart_type = st.selectbox("Select Chart Type", ("Candle_Stick", "Line"))
 
     # 선택된 차트 타입에 따라 다른 내용을 표시
     if chart_type == "Candle_Stick":
