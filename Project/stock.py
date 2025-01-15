@@ -39,12 +39,13 @@ def render_page(change_page):
         row = selected_row.iloc[0]  # 첫 번째 행 선택
         
         # 컬럼으로 영역을 나누어 표기
-        col1, col2, col3, col4, col5 = st.columns(5)
-        col1.metric(label="현재가", value=f"{row['현재가']}원", delta=row['전일비'])  # delta는 전일비로 수정
-        col2.metric(label="전일비", value=row['전일비'], delta=row['전일비'])  # delta는 전일비 변화로 수정
-        col3.metric(label="등락률", value=row['등락률'], delta=row['등락률'])  # delta는 등락률 변화로 수정
-        col4.metric(label="거래량", value=row['거래량'], delta=row['거래량'])  # delta는 거래량 변화로 수정
-        col5.metric(label="시가", value=f"{row['시가']}원", delta=row['시가'])  # delta는 시가 변화로 수정
+        col1, col2, col3 = st.columns(3)
+
+        delta_value = f"{row['전일비']} ({row['등락률']})"
+        col1.metric(label="현재가", value=f"{row['현재가']}원", delta=delta_value)  
+        col2.metric(label="거래량", value=row['거래량'], delta=row['거래량'])  
+        col3.metric(label="시가", value=f"{row['시가']}원", delta=row['시가'])  
+       
     # CSS로 폰트 크기 설정
     st.markdown("""
         <style>
@@ -190,6 +191,7 @@ def render_page(change_page):
     df['localDate'] = pd.to_datetime(df['localDate'], errors='coerce')
 
     # 탭 1: 주식 차트
+    # 주식 차트
     with tab1:
         # 회사 선택 및 날짜 입력
         st.title("Stock Chart")
@@ -200,6 +202,10 @@ def render_page(change_page):
         
         # 선택한 회사에 해당하는 데이터만 필터링
         company_df = df[df['Company'] == ticker]
+
+        # 날짜 범위에 맞게 데이터 필터링
+        company_df = company_df[(company_df['localDate'] >= pd.to_datetime(start_date)) & 
+                                (company_df['localDate'] <= pd.to_datetime(end_date))]
 
         if company_df.empty:
             st.warning(f"{company}에 대한 데이터가 없습니다.")
@@ -229,6 +235,7 @@ def render_page(change_page):
 
         fig.update_layout(title=f"{company} {chart_type} Chart", xaxis_title="Date", yaxis_title="Price")
         st.plotly_chart(fig)
+
 
     # 탭 2: 수익률 차트
     with tab2:
