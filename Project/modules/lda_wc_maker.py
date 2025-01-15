@@ -23,7 +23,7 @@ def lda_func(section, num_topics):
     news_data = start_crawling(section)
 
     # 불용어 리스트를 파일에서 읽기
-    with open('C:/Users/ENVY/Desktop/프로젝트/News/Project/modules/stopwords.txt', 'r', encoding='utf-8') as file:
+    with open('./text/stopwords.txt', 'r', encoding='utf-8') as file:
         stop_words = set(file.read().splitlines())  # 한 줄씩 읽어서 불용어 목록에 저장
 
     # 텍스트 토크나이저 정의 (한글만 추출하는 정규식)
@@ -62,7 +62,7 @@ def lda_func(section, num_topics):
 # WC 함수
 def make_wc(section, num_topics, lda_model):
 
-    plt.rcParams['font.family'] = 'Malgun Gothic'
+    plt.rcParams['font.family'] = 'NanumGothicBold'
     plt.rcParams['axes.unicode_minus'] = False
 
     images = []
@@ -70,7 +70,7 @@ def make_wc(section, num_topics, lda_model):
     for topic_id in range(num_topics):
         topic_terms = lda_model.show_topic(topic_id, topn=20)
         word_weights = {word: weight for word, weight in topic_terms}
-        wordcloud = WordCloud(font_path="C:/Windows/Fonts/malgun.ttf", 
+        wordcloud = WordCloud(font_path="./Fonts/NanumGothicBold.ttf", 
                               width=800, height=400,
                               colormap='coolwarm', max_words=50, 
                               background_color='white').generate_from_frequencies(word_weights)
