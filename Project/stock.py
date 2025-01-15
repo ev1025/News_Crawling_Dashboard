@@ -22,7 +22,7 @@ def render_page(change_page):
     st.title("Stock Dashboard")
 
     # CSV 파일 불러오기
-    df = pd.read_csv('./csv/pop_stock_change.csv') 
+    df = pd.read_csv('./csv/pop_stock.csv') 
 
     # 1순위부터 100순위까지 데이터 선택
     top_100_stocks = df.head(100)
@@ -45,7 +45,14 @@ def render_page(change_page):
         col3.metric(label="등락률", value=row['등락률'], delta=row['등락률'])  # delta는 등락률 변화로 수정
         col4.metric(label="거래량", value=row['거래량'], delta=row['거래량'])  # delta는 거래량 변화로 수정
         col5.metric(label="시가", value=f"{row['시가']}원", delta=row['시가'])  # delta는 시가 변화로 수정
-
+    # CSS로 폰트 크기 설정
+    st.markdown("""
+        <style>
+            .st-emotion-cache-p38tq {
+                font-size: 1.9rem !important;
+            }
+        </style>
+    """, unsafe_allow_html=True)
     # 구분선 생성
     st.divider()
 
@@ -63,24 +70,11 @@ def render_page(change_page):
     kospi['고가'] = [num(i) for i in kospi['고가']]
     kospi['저가'] = [num(i) for i in kospi['저가']]
 
-
-    # 컨테이너 : 화면의 일정 영역 -> 웹 브라우저 화면을 컨테이너로 사용
-    # st.dataframe(kospi, use_container_width=False)
-    # st.dataframe(kosdaq, use_container_width=False)
-
     # 4. Plotly 이중 축 그래프 객체 생성
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
    # selectbox 사용 (수평 선택 가능)
     chart_type = st.selectbox("Select Chart Type", ("Candle_Stick", "Line"))
-
-    # 선택된 차트 타입에 따라 다른 내용을 표시
-    if chart_type == "Candle_Stick":
-        st.write("Candle Stick 차트를 선택했습니다.")
-        # 여기에 Candle Stick 차트 관련 코드 추가
-    else:
-        st.write("Line 차트를 선택했습니다.")
-    # 여기에 Line 차트 관련 코드 추가
     
     # 4. Plotly 이중 축 그래프 객체 생성
     fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -170,14 +164,12 @@ def render_page(change_page):
     st.title("Kospi and Kosdaq Chart")
     st.plotly_chart(fig, use_container_width=True)
 
-    # detalied data view title
-    st.title("Detalied Data View")
-
-    # 주식 data 로드
-    # CSV 파일을 데이터프레임으로 읽기
-    ddv_df = pd.read_csv("./csv/merged.csv")
-    # 데이터프레임을 화면에 표시
-    st.dataframe(ddv_df)
+    # 코스피 코스닥 data 로드
+    # 컨테이너 : 화면의 일정 영역 -> 웹 브라우저 화면을 컨테이너로 사용
+    st.title("Kospi Detailed View")
+    st.dataframe(kospi, use_container_width=True)
+    st.title("Kosdaq Detailed View")
+    st.dataframe(kosdaq, use_container_width=True)
     
     # 주식 & 수익률차트 탭
     st.title("주식 & 수익률차트")
@@ -203,7 +195,6 @@ def render_page(change_page):
         st.title("Stock Chart")
         company = st.selectbox("Select Company", ["Samsung", "SK hynix", "LG ensol"], key="stock_company")
         ticker = {"Samsung": "Samsung", "SK hynix": "SK hynix", "LG ensol": "LG ensol"}[company]
-        st.markdown('^마크다운^')
         start_date = st.date_input("시작 날짜: ", value=pd.to_datetime("2023-01-01"), key="stock_start_date")
         end_date = st.date_input("종료 날짜: ", value=pd.to_datetime("2025-01-01"), key="stock_end_date")
         
