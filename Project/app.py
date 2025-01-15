@@ -1,6 +1,7 @@
 import streamlit as st
 from importlib import import_module
 
+
 # 세션 상태로 현재 페이지 저장
 if "page" not in st.session_state:
     st.session_state.page = "home"
