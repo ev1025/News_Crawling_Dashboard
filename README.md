@@ -61,9 +61,11 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
 
 - 
 3) 주가 데이터 화면
-- 라디오 버튼으로 3사의 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음
-  - 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
-- 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
-  -코스피 지수와 코스닥 지수 비교 가능
-  - Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
+  - Stock Dashboard
+  - 라디오 버튼으로 3사 중 하나를 선택하여 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+  - 3사의 데이터 프레임 내용(종가/시가/고가/저가 등) 확인 가능
+    -> 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
+  - 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+    - 코스피 지수와 코스닥 지수 비교 가능
+    - Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
 
