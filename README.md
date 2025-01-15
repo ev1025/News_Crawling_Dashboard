@@ -1,6 +1,7 @@
 # 네이버 뉴스와 수치형 데이터 시각화를 활용한 Streamlit 대시보드
 #### 프로젝트 소개
 사용자가 네이버 뉴스를 크롤링하여 특정 카테고리의 토픽을 분석하고 이를 워드 클라우드 형태로 시각화하는 동시에 수치형 데이터를 활용한 시각화를 통해 직관적이고 효율적인 데이터 분석 경험을 제공하는 Streamlit 기반 대시보드 애플리케이션을 제작
+### 폴더 구
 ```
 │  .DS_Store
 │  .gitignore
@@ -102,7 +103,7 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
 
    - 선택된 카테고리의 최신 뉴스를 예시로 5개 보여줌
      
-     <img width="481" alt="image" src="https://github.com/user-attachments/assets/fc6e79e8-e254-4db8-885a-78de1ab0d41c" />
+     ![image](https://github.com/user-attachments/assets/0aa58720-2897-4347-856d-f8ff87fe68a0)
 
    - 워드 클라우드에 호버 기능 추가
 
