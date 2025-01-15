@@ -11,7 +11,7 @@ def render_page(change_page):
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
     # 이미지 URL 또는 경로
-    image_path = "./stock_img.jpg"
+    image_path = "./images/stock_img.jpg"
     # 이미지를 계속 보여주기
     st.image(image_path)
 
