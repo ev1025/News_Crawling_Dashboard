@@ -8,9 +8,12 @@ if "page" not in st.session_state:
 def render_page(change_page):
     st.title("News & Stock Crawling")
     # 세션 상태에 'show_image' 키가 없으면 초기화
-    st.balloons
+   
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
+    # 풍선 애니메이션 표시
+    st.balloons() 
+        
     # 이미지 URL 또는 경로
     image_path = "./images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg"
     # 이미지를 계속 보여주기
@@ -60,7 +63,7 @@ def render_page(change_page):
 
     # 첫 번째 컬럼: 데이터 전처리
     with col1:
-        st.markdown("<h2 style='font-size: 30px;background:#fff9c7;padding:5px 10px;margin:30px 0 10px 0;'>데이터 전처리 과정</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-size: 30px;background:#fff9c7;padding:5px 10px;margin:30px 0 10px 0; color:black;'>데이터 전처리 과정</h2>", unsafe_allow_html=True)
         st.markdown("""
         - **날짜**: 모든 날짜를 `datetime` 형식으로 변환합니다.
         - **종가**: 종가는 `float` 형식으로 변환하여 분석에 적합하게 만듭니다.
@@ -69,7 +72,7 @@ def render_page(change_page):
 
     # 두 번째 컬럼: 기술 스택
     with col2:
-        st.markdown("<h2 style='font-size: 30px;background:#fff9c7;padding:5px 10px;margin:30px 0 10px 0;'>기술 스택</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='font-size: 30px;background:#fff9c7;padding:5px 10px;margin:30px 0 10px 0; color:black;'>기술 스택</h2>", unsafe_allow_html=True)
         st.markdown("""
         - **Frontend**: Streamlit
         - **Backend**: Python
