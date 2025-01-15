@@ -36,17 +36,34 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
 ## 데이터 분석
 ### 1. 데이터 분석
 1) 네이버 뉴스 크롤링 및 토픽 모델링
-- 사용자가 정치, 경제, 사회, 생활/문화, 과학, 세계 카테고리 중 하나를 선택하면 해당 카테고리의 최신 기사를 BeautifulSoup로 크롤링
-- 불용어 처리 : RegexpTokenizer를 사용하여 텍스트 정제 및 불용어 처리
-- genism의 LDA 모델을 활용하여 토픽 모델링을 수행
-- 토픽 모델링 결과를 wordcloud로 시각화
+   - 사용자가 정치, 경제, 사회, 생활/문화, 과학, 세계 카테고리 중 하나를 선택하면 해당 카테고리의 최신 기사를 BeautifulSoup로 크롤링
+   - 불용어 처리 : RegexpTokenizer를 사용하여 텍스트 정제 및 불용어 처리
+   - genism의 LDA 모델을 활용하여 토픽 모델링을 수행
+   - 토픽 모델링 결과를 wordcloud로 시각화
+"""
 2) 수치형 데이터 크롤링 및 시각화
-- 삼성전자, SK 하이닉스, LG 에너지 솔루션의 최신 1년의 종가 데이터를 Plotly의 Candlestick Chart를 활용하여 시각화
+   - 삼성전자, SK 하이닉스, LG 에너지 솔루션의 최신 1년의 종가 데이터를 Plotly의 Candlestick Chart 및 line plot을 활용하여 시각화
+     Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
+   - 그래프로 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
+"""
 
-   Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
-  
-- 그래프로 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
-- 
 ### 2. Streamlit
+사이드 바로 페이지 선택 가능
+1) 홈 화면
+   - 사진 추가
+2) 뉴스 크롤링 화면
+   - select box로 정치, 경제, 사회, 생활/문화, 과학, 세계 카테고리 중 하나를 선택
+   - 선택된 카테고리의 뉴스 크롤링 데이터를 활용하여 WordCloud 시각화 자료 생성
+     -> 각 카테고리 별로 자주 언급되는 단어를 확인할 수 있음
+   - 선택된 카테고리의 최신 뉴스를 예시로 5개 보여줌
+   - 워드 클라우드에 마우스 커서 기능? 추가
+     ![image](https://github.com/user-attachments/assets/1eb67f61-3426-4d5a-a12a-df590599837d)
 
+- 
+3) 주가 데이터 화면
+- 라디오 버튼으로 3사의 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+  - 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
+- 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+  -코스피 지수와 코스닥 지수 비교 가능
+  - Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
 
