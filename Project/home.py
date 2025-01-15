@@ -8,10 +8,11 @@ if "page" not in st.session_state:
 def render_page(change_page):
     st.title("News & Stock Crawling")
     # 세션 상태에 'show_image' 키가 없으면 초기화
+    st.balloons
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
     # 이미지 URL 또는 경로
-    image_path = "./images/stock_img.jpg"
+    image_path = "./images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg"
     # 이미지를 계속 보여주기
     st.image(image_path)
 
