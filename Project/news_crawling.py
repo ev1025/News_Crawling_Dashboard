@@ -2,7 +2,7 @@
 import streamlit as st
 from modules.lda_wc_maker import make_lda_wc
 import time
-
+import datetime
 if "page" not in st.session_state:
     st.session_state.page = "news_crawling"
 
@@ -19,11 +19,31 @@ def render_page(change_page):
         [data-testid="stHorizontalBlock"] img:hover {
             transform: scale(1.8);
         }
-    </style>
+        span.st-emotion-cache-pkbazv.e11k5jya0 > div[data-testid="stMarkdownContainer"] p {
+            color: #adb5bd;
+            text-decoration: underline;
+        }
+</style>
     """, unsafe_allow_html=True)
 
+    section_list = ["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"]
+    section_num = [i for i in range(100,106)]
+    section_dict = dict(zip(section_list, section_num))
+
     # 뉴스 토픽 분석 및 워드클라우드
-    section = st.selectbox("궁금하신 테마를 선택하세요.", ["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"])
+    st.image("images/nnews.png")
+    st.header('최신 뉴스 토픽', ) 
+
+    # 오늘 날짜 가져오기
+    today = datetime.date.today()
+
+    # 날짜 포맷 지정
+    formatted_today = today.strftime("%Y-%m-%d")
+
+    # 포맷된 날짜 출력
+    st.write("Today:", formatted_today)
+
+    section = st.selectbox("궁금하신 테마를 선택하세요.", section_list)
 
     if st.button("분석 시작"):
         with st.spinner('로딩중...'):
@@ -38,12 +58,13 @@ def render_page(change_page):
 
             st.header("최신 기사")
             for num in range(5):
-                st.subheader(f'{news_data[num]["title"]}')
-                st.text(f'{news_data[num]["body"]}')
-                a = st.success('완료')
-                time.sleep(1)
-                a.empty()
-
+                with st.expander(f'{news_data[num]["title"]}'):
+                    st.write(f'{news_data[num]["body"]}')
+            a = st.success('완료')
+            time.sleep(1)
+            a.empty()
+            
+            st.page_link(f"https://news.naver.com/section/{section_dict[section]}", label=f"{section} 기사 더 보러 가기")
 
 
     if __name__ == "__news_crawling__":
