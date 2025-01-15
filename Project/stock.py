@@ -21,13 +21,30 @@ def render_page(change_page):
     # stock title
     st.title("Stock Dashboard")
 
-    # 컬럼으로 영역을 나누어 표기한 경우
-    col1, col2, col3, col4, col5 = st.columns(5)
-    col1.metric(label="현재량", value="54,000원", delta="-120원")
-    col2.metric(label="전일비", value="-100", delta="-7.44원")
-    col3.metric(label="등락률", value="-0.18%", delta="11.44원")
-    col4.metric(label="거래량", value="6,219,363", delta="11.44")
-    col5.metric(label="시가", value="54,200원", delta="11.44원")
+    # CSV 파일 불러오기
+    df = pd.read_csv('.\csv\pop_stock.csv') 
+
+    # 1순위부터 100순위까지 데이터 선택
+    top_100_stocks = df.head(100)
+
+    # 종목명 선택 셀렉트 박스 추가
+    stock_names = top_100_stocks['종목명'].tolist() 
+    selected_stock = st.selectbox("종목을 선택하세요:", stock_names)
+
+    # 선택한 종목의 데이터 필터링
+    selected_row = top_100_stocks[top_100_stocks['종목명'] == selected_stock]
+
+    # 선택된 종목의 데이터가 있을 경우 표시
+    if not selected_row.empty:
+        row = selected_row.iloc[0]  # 첫 번째 행 선택
+        
+        # 컬럼으로 영역을 나누어 표기
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.metric(label="현재가", value=f"{row['현재가']}원", delta=row['전일비'])  # delta는 전일비로 수정
+        col2.metric(label="전일비", value=row['전일비'], delta=row['전일비'])  # delta는 전일비 변화로 수정
+        col3.metric(label="등락률", value=row['등락률'], delta=row['등락률'])  # delta는 등락률 변화로 수정
+        col4.metric(label="거래량", value=row['거래량'], delta=row['거래량'])  # delta는 거래량 변화로 수정
+        col5.metric(label="시가", value=f"{row['시가']}원", delta=row['시가'])  # delta는 시가 변화로 수정
 
     # 구분선 생성
     st.divider()
