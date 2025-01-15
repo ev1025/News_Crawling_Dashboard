@@ -41,7 +41,11 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
 - genism의 LDA 모델을 활용하여 토픽 모델링을 수행
 - 토픽 모델링 결과를 wordcloud로 시각화
 2) 수치형 데이터 크롤링 및 시각화
-- 삼성전자, SK 하이닉스, LG 에너지 솔루션의 최신 1년의 주가 데이터 크롤링
+- 삼성전자, SK 하이닉스, LG 에너지 솔루션의 최신 1년의 종가 데이터를 Plotly의 Candlestick Chart를 활용하여 시각화
+
+   Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
+  
+- 그래프로 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
 - 
 ### 2. Streamlit
 
