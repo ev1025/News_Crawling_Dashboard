@@ -1,7 +1,7 @@
 # 네이버 뉴스와 수치형 데이터 시각화를 활용한 Streamlit 대시보드
 #### 프로젝트 소개
 사용자가 네이버 뉴스를 크롤링하여 특정 카테고리의 토픽을 분석하고 이를 워드 클라우드 형태로 시각화하는 동시에 수치형 데이터를 활용한 시각화를 통해 직관적이고 효율적인 데이터 분석 경험을 제공하는 Streamlit 기반 대시보드 애플리케이션을 제작
-### 폴더 구
+### 폴더 구조
 ```
 │  .DS_Store
 │  .gitignore
@@ -18,6 +18,7 @@
     │      kosdaq.csv
     │      kospi.csv
     │      merged.csv
+    │      pop_stock.csv
     │      sample1.csv
     │      
     ├─Fonts
@@ -26,6 +27,7 @@
     ├─images
     │      nnews.png
     │      stock_img.jpg
+    │      jamie-street-Zqy-x7K5Qcg-unsplash.jpg
     │      
     ├─modules
     │  │  crawler.py
