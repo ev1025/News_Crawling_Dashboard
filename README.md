@@ -113,16 +113,18 @@
 
 
 ### 3) 수치 데이터 시각화 화면
-  - 주식 & # 차트
-    - 라디오 버튼으로 3사 중 하나를 선택하여 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음(시작/종료 날짜 선택 가능)
-    - 3사의 데이터 프레임 내용(종가/시가/고가/저가 등) 확인 가능
-    - 수익률 탭에서 시가와 종가의 차이를 데이터 프레임 형태로 확인할 수 있음
-      -> 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
-  <img width="539" alt="image" src="https://github.com/user-attachments/assets/67cfe0f5-0121-496b-a849-a1d9b0271b12" />
+**주식 & # 차트**   
+- 라디오 버튼으로 3사 중 하나를 선택하여 종가 데이터의 Candlestick Chart와 line plot을 선택하여 볼 수 있음(시작/종료 날짜 선택 가능)
+- 3사의 데이터 프레임 내용(종가/시가/고가/저가 등) 확인 가능
+- 수익률 탭에서 시가와 종가의 차이를 데이터 프레임 형태로 확인할 수 있음
+-> 3사의 종가 데이터 비교 및 최신 주가 데이터의 변동을 확인할 수 있음
 
-  - 코스피 / 코스닥 지수 차트
-    - 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
-    - 코스피 지수와 코스닥 지수 비교 가능
-    - Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
-      ![newplot](https://github.com/user-attachments/assets/8814d0db-fc64-4340-90b9-96f352550ed9)
+<img width="539" alt="image" src="https://github.com/user-attachments/assets/67cfe0f5-0121-496b-a849-a1d9b0271b12" />
+
+**코스피 / 코스닥 지수 차트**   
+- 라디오 버튼으로 코스피/코스닥 지수 데이터 Candlestick Chart와 line plot을 선택하여 볼 수 있음
+- 코스피 지수와 코스닥 지수 비교 가능
+- Candlestick Chart로 날짜를 조절하여 원하는 기간동안의 데이터만 확인 가능
+  
+![newplot](https://github.com/user-attachments/assets/8814d0db-fc64-4340-90b9-96f352550ed9)
 
