@@ -3,6 +3,8 @@ import streamlit as st
 from modules.lda_wc_maker import make_lda_wc
 import time
 import datetime
+import os
+
 if "page" not in st.session_state:
     st.session_state.page = "news_crawling"
 
@@ -40,7 +42,9 @@ def render_page(change_page):
     today = datetime.date.today()
     formatted_today = today.strftime("%Y-%m-%d")
     
-    st.image("images/nnews.png")
+
+    image_path = os.path.join(os.path.dirname(__file__), "images", "nnews.png")
+    st.image(image_path)
     st.header('최신 뉴스 토픽', ) 
     st.markdown(
         f"""

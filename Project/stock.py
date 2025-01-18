@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import matplotlib.dates as mdates
 from plotly.subplots import make_subplots
+import os
 
 # 시스템 기본 한글 폰트 설정
 mpl.rcParams['font.family'] = 'AppleGothic'
@@ -21,8 +22,12 @@ def render_page(change_page):
     # stock title
     st.title("Stock Dashboard")
 
+    base_path = os.path.dirname(__file__)
+
+    pop_path = os.path.join(base_path, "csv", "pop_stock.csv")
+
     # CSV 파일 불러오기
-    df = pd.read_csv('csv/pop_stock.csv') 
+    df = pd.read_csv(pop_path) 
 
     # 1순위부터 100순위까지 데이터 선택
     top_100_stocks = df.head(100)
@@ -58,9 +63,12 @@ def render_page(change_page):
     # 구분선 생성
     st.divider()
 
+    kospi_path = os.path.join(base_path, "csv", "kospi.csv")
+    kosdaq_path = os.path.join(base_path, "csv", "kosdaq.csv")
+
     # data extraction title
-    kospi = pd.read_csv('./csv/kospi.csv')
-    kosdaq = pd.read_csv('./csv/kosdaq.csv')
+    kospi = pd.read_csv(kospi_path)
+    kosdaq = pd.read_csv(kosdaq_path)
 
 
     #kospi['날짜'] = pd.to_datetime(kospi['날짜'])
@@ -178,9 +186,11 @@ def render_page(change_page):
     # 탭 생성
     tab1, tab2 = st.tabs(["주식 차트", "수익률 차트"])
 
+
+    merge_path = os.path.join(base_path,'csv','merged.csv')
     # 파일 읽기
     try:
-        df = pd.read_csv("./csv/merged.csv")
+        df = pd.read_csv(merge_path)
     except ValueError as e:
         st.error(f"파일을 읽는 중 오류가 발생했습니다: {e}")
         return  # 오류 발생 시 함수 종료
