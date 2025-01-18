@@ -81,12 +81,14 @@ def make_wc(section, num_topics, lda_model):
     plt.rcParams['font.family'] = 'NanumGothicBold'
     plt.rcParams['axes.unicode_minus'] = False
 
+    font_path = os.path.join(os.path.dirname(__file__),'Fonts','NanumGothicBold.ttf')
+
     images = []
     
     for topic_id in range(num_topics):
         topic_terms = lda_model.show_topic(topic_id, topn=20)
         word_weights = {word: weight for word, weight in topic_terms}
-        wordcloud = WordCloud(font_path="./Fonts/NanumGothicBold.ttf", 
+        wordcloud = WordCloud(font_path=font_path, 
                               width=800, height=400,
                               colormap='coolwarm', max_words=50, 
                               background_color='white').generate_from_frequencies(word_weights)
