@@ -1,5 +1,7 @@
 import streamlit as st
 import numpy as np
+import os
+
 
 # 세션 상태로 현재 페이지 저장
 if "page" not in st.session_state:
@@ -12,11 +14,13 @@ def render_page(change_page):
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
     # 풍선 애니메이션 표시
-    if st.session_state.show_image:
-        st.balloons() 
-        
+    st.balloons() 
+
     # 이미지 URL 또는 경로
-    image_path = "images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg"
+    base_dir = os.getcwd()  # 현재 작업 디렉토리
+    image_path = os.path.join(base_dir, "images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg")
+
+
     # 이미지를 계속 보여주기
     st.image(image_path)
 
