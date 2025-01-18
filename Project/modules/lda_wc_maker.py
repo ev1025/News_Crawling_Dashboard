@@ -81,7 +81,7 @@ def make_wc(section, num_topics, lda_model):
     plt.rcParams['font.family'] = 'NanumGothicBold'
     plt.rcParams['axes.unicode_minus'] = False
 
-    font_path = os.path.join(os.path.dirname(__file__),'Fonts','NanumGothicBold.ttf')
+    font_path = os.path.join(os.path.abspath(os.path.dirname(__file__)),'Fonts','NanumGothicBold.ttf')
 
     images = []
     
