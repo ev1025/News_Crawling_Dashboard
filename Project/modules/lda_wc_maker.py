@@ -22,7 +22,7 @@ import os
 def lda_func(section, num_topics):
     # 뉴스 크롤링
     news_data = start_crawling(section)
-    text_path = os.path.join(os.path.dirname(__file__), "../text", "stopwords.txt")
+    text_path = os.path.join(os.path.dirname(os.path.abspath(os.path.dirname(__file__))), "text", "stopwords.txt")
     # 불용어 리스트를 파일에서 읽기
     with open(text_path, 'r', encoding='utf-8') as file:
         stop_words = set(file.read().splitlines())  # 한 줄씩 읽어서 불용어 목록에 저장
