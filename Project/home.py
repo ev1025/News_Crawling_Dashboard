@@ -13,12 +13,12 @@ def render_page(change_page):
    
     if 'show_image' not in st.session_state:
         st.session_state.show_image = False
+    
     # 풍선 애니메이션 표시
     st.balloons() 
 
     # 이미지 URL 또는 경로
-    base_dir = os.getcwd()  # 현재 작업 디렉토리
-    image_path = os.path.join(base_dir, "images/jamie-street-Zqy-x7K5Qcg-unsplash.jpg")
+    image_path = os.path.join(os.path.dirname(__file__), "images", "jamie-street-Zqy-x7K5Qcg-unsplash.jpg")
 
 
     # 이미지를 계속 보여주기
