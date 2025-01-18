@@ -21,7 +21,7 @@ def render_page(change_page):
         }
                 
         /* 토글 기사 제목 */ 
-        span.st-emotion-cache-1dtefog.eqpbllx2 div[data-testid="stMarkdownContainer"] p {
+        span.st-emotion-cache-1dtefog.enj44ev2 div[data-testid="stMarkdownContainer"] p {
             font-size: 18px;
             font-weight: bold;
         }
