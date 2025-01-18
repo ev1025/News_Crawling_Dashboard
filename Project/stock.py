@@ -22,7 +22,7 @@ def render_page(change_page):
     st.title("Stock Dashboard")
 
     # CSV 파일 불러오기
-    df = pd.read_csv('./csv/pop_stock.csv') 
+    df = pd.read_csv('csv/pop_stock.csv') 
 
     # 1순위부터 100순위까지 데이터 선택
     top_100_stocks = df.head(100)
