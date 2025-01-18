@@ -1,68 +1,59 @@
 # 네이버 뉴스와 수치형 데이터 시각화를 활용한 Streamlit 대시보드
-#### 프로젝트 소개
+### 프로젝트 기간
+- 2024년 1월 13일 ~ 2025년 1월 15일 (3일)
+
+### 참여자
+- 조정인, 조누리, 김경미, 이진우
+ 
+### 프로젝트 소개
 사용자가 네이버 뉴스를 크롤링하여 특정 카테고리의 토픽을 분석하고 이를 워드 클라우드 형태로 시각화하는 동시에 수치형 데이터를 활용한 시각화를 통해 직관적이고 효율적인 데이터 분석 경험을 제공하는 Streamlit 기반 대시보드 애플리케이션을 제작
+
 ### 폴더 구조
 ```
-│  .DS_Store
-│  .gitignore
-│  README.md
-│  requirements.txt
-│  
-└─Project
-    │  app.py
-    │  home.py
-    │  news_crawling.py
-    │  stock.py
-    │  
-    ├─csv
-    │      kosdaq.csv
-    │      kospi.csv
-    │      merged.csv
-    │      pop_stock.csv
-    │      sample1.csv
-    │      
-    ├─Fonts
-    │      NanumGothicBold.ttf
-    │      
-    ├─images
-    │      nnews.png
-    │      stock_img.jpg
-    │      jamie-street-Zqy-x7K5Qcg-unsplash.jpg
-    │      
-    ├─modules
-    │  │  crawler.py
-    │  │  lda_wc_maker.py
-    │  │  
-    │  └─__pycache__
-    │          crawler.cpython-38.pyc
-    │          lda_wc_maker.cpython-38.pyc
-    │          lda_wc_maker.cpython-39.pyc
-    │          st_wordcloud.cpython-38.pyc
-    │          
-    ├─text
-       └─ stopwords.txt
- 
+📁News_Crawling_Dashboard
+ ├─ .DS_Store
+ ├─ .gitignore
+ ├─ README.md
+ ├─ requirements.txt
+ └─ 📁Project
+     ├─ app.py
+     ├─ home.py
+     ├─ news_crawling.py
+     ├─ stock.py
+     ├─ 📁csv
+     │   ├─ kosdaq.csv
+     │   ├─ kospi.csv
+     │   ├─ merged.csv
+     │   ├─ pop_stock.csv
+     │   └─ sample1.csv
+     │      
+     ├─ 📁Fonts
+     │   └─ NanumGothicBold.ttf
+     │      
+     ├─ 📁images
+     │    ├─ nnews.png
+     │    ├─ stock_img.jpg
+     │    └─ jamie-street-Zqy-x7K5Qcg-unsplash.jpg
+     │      
+     ├─ 📁modules
+     │    ├─ crawler.py
+     │    └─ lda_wc_maker.py
+     │ 
+     └─ 📁text
+          └─ stopwords.txt
 ```
 
 ## 데이터 소개
-#### 1. 네이버 뉴스
-url : https://news.naver.com/section/100
-#### 2. 코스피, 코스닥
-최근 1년(2024-01-14 ~ 2025-01-14)간의 코스피, 코스닥 지수 데이터(csv)
-
-columns : 날짜, 종가, 시가, 고가, 저가, 거래량, 변동 %
-- 코스피 : https://kr.investing.com/indices/kospi-historical-data
-- 코스닥 : https://kr.investing.com/indices/kospi-historical-data
-  
-#### 3. 네이버페이 증권
-url : https://m.stock.naver.com/domestic/capitalization/KOSPI
-
-시가총액 1,2,3순위(삼성전자, SK 하이닉스, LG 에너지솔루션)의 주가 크롤링 데이터(json)
-- 삼성 전자 : https://m.stock.naver.com/fchart/domestic/stock/005930
-- SK 하이닉스 : https://m.stock.naver.com/fchart/domestic/stock/000660
-- LG 에너지솔루션 : https://m.stock.naver.com/fchart/domestic/stock/373220
-  
-columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTradingVolume, foreignRetentionRate
+#### [1. 네이버 뉴스](https://news.naver.com/section/100)
+- 네이버 뉴스의 실시간 데이터를 크롤링하도록 설정
+#### [2. 코스피, 코스닥 지수](https://kr.investing.com/indices/kospi-historical-data)
+- 최근 1년(2024-01-14 ~ 2025-01-14)간의 코스피, 코스닥 지수 데이터(csv)
+- columns : 날짜, 종가, 시가, 고가, 저가, 거래량, 변동량
+#### [3. 네이버페이 증권](https://m.stock.naver.com/domestic/capitalization/KOSPI)
+- 시가총액 Top3 기업 ([삼성 전자](https://m.stock.naver.com/fchart/domestic/stock/005930),
+[SK 하이닉스](https://m.stock.naver.com/fchart/domestic/stock/000660), 
+[LG 에너지솔루션](https://m.stock.naver.com/fchart/domestic/stock/373220))의 주가 크롤링 데이터(json)
+- columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTradingVolume, foreignRetentionRate
 
 ## 기술 스택
 - Frontend : Streamlit
@@ -97,17 +88,16 @@ columns : localDate, openPrice, closePrice, highPrice, lowPrice, accumulatedTrad
 1) 홈 화면
    - 사진 추가
 2) 뉴스 크롤링 화면
-   - select box로 정치, 경제, 사회, 생활/문화, 과학, 세계 카테고리 중 하나를 선택
-   - 선택된 카테고리의 뉴스 크롤링 데이터를 활용하여 WordCloud 시각화 자료 생성
+   - select box로 정치, 경제, 사회, 생활/문화, 과학, 세계 카테고리 중 하나와 토픽 개수 선택
+   - 선택된 카테고리의 실시간 뉴스 크롤링 데이터를 활용하여 WordCloud 시각화 자료 생성
      -> 각 카테고리 별로 자주 언급되는 단어를 확인할 수 있음
-     
-     <img width="485" alt="image" src="https://github.com/user-attachments/assets/a5e0302f-db79-4a10-ab04-a0016414e6f6" />
 
-   - 선택된 카테고리의 최신 뉴스를 예시로 5개 보여줌
-     
-     ![image](https://github.com/user-attachments/assets/0aa58720-2897-4347-856d-f8ff87fe68a0)
+     <img width="485" alt="image" src="https://github.com/user-attachments/assets/540cbf47-c502-4a1b-b6cb-1bd571118b40" />
 
-   - 워드 클라우드에 호버 기능 추가
+   - 각 토픽별 관련성 높은 뉴스 5개를 선별해서 출력   
+     
+     <img width="485" alt="image" src="https://github.com/user-attachments/assets/6593afc2-edb8-4cbc-95b7-6c4abd00bbc0" />
+
 
 3) 수치 데이터 시각화 화면
   - 주식 & 수익률 차트
