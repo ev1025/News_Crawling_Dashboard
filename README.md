@@ -6,7 +6,7 @@
 - 조정인, 조누리, 김경미, 이진우
  
 ### 프로젝트 소개
-사용자가 네이버 뉴스를 크롤링하여 특정 카테고리의 토픽을 분석하고 이를 워드 클라우드 형태로 시각화하는 동시에 수치형 데이터를 활용한 시각화를 통해 직관적이고 효율적인 데이터 분석 경험을 제공하는 Streamlit 기반 대시보드 애플리케이션을 제작
+사용자가 네이버 뉴스를 크롤링하여 특정 카테고리의 토픽을 분석하고 이를 워드 클라우드 형태로 시각화하는 동시에 수치형 데이터를 활용한 시각화를 통해 직관적이고 효율적인 데이터 분석 경험을 제공하는 [Streamlit 기반 대시보드 애플리케이션](https://ev1025-news-crawling-dashboard-projectapp-xrldlx.streamlit.app/)을 제작 및 배포
 
 ### 폴더 구조
 ```
@@ -91,7 +91,7 @@
 
 <br>
 
-## Streamlit
+## [Streamlit](https://ev1025-news-crawling-dashboard-projectapp-xrldlx.streamlit.app/)
 
 ### 1) 홈 화면
 - 사이드 바로 페이지 선택 가능
