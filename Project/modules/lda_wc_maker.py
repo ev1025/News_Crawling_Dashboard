@@ -51,7 +51,7 @@ def lda_func(section, num_topics):
     lda_model = models.LdaModel(corpus,                
                                 num_topics=num_topics, # 모델이 학습할 주제 수(뉴스는 10~20개 적절)
                                 id2word=dictionary,    # 말뭉치의 단어 id를 실제 단어와 매칭
-                                passes=10,             # 학습 횟수
+                                passes=80,             # 학습 횟수
                                 random_state=42)
     return lda_model, corpus, news_data
 

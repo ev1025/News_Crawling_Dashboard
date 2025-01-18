@@ -14,7 +14,6 @@ def render_page(change_page):
 
     st.markdown("""
     <style>
-
                 
         /* 기사 더보기 */
         span.st-emotion-cache-pkbazv.e11k5jya0 > div[data-testid="stMarkdownContainer"] p {
@@ -22,10 +21,10 @@ def render_page(change_page):
         }
                 
         /* 토글 기사 제목 */ 
-        .st-emotion-cache-1wmy9hl.e1f1d6gn1 .st-emotion-cache-1puwf6r.e1nzilvr5 p {
-        font-size: 18px;
-        font-weight: bold;  
-        } 
+        span.st-emotion-cache-1dtefog.eqpbllx2 div[data-testid="stMarkdownContainer"] p {
+            font-size: 18px;
+            font-weight: bold;
+        }
                 
         .stElementContainer.element-container.st-emotion-cache-3w7kxl.e1f1d6gn4 {
         margin: 0px;
