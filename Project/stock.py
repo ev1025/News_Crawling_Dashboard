@@ -262,7 +262,7 @@ def render_page(change_page):
 
         # 월별 첫 날과 마지막 날의 데이터 추출
         company_df.set_index('localDate', inplace=True)
-        monthly_data = company_df.resample('M').agg({'openPrice': 'first', 'closePrice': 'last', 'highPrice': 'max', 'lowPrice': 'min'}).reset_index()
+        monthly_data = company_df.resample('ME').agg({'openPrice': 'first', 'closePrice': 'last', 'highPrice': 'max', 'lowPrice': 'min'}).reset_index()
 
         # 수익률 계산
         monthly_data['Return'] = ((monthly_data['closePrice'] - monthly_data['openPrice']) / monthly_data['openPrice'] * 100).round(2).astype(str) + '%'
