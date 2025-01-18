@@ -8,8 +8,6 @@ import os
 if "page" not in st.session_state:
     st.session_state.page = "news_crawling"
 
-
-
 def render_page(change_page):
 
     st.markdown("""
@@ -68,9 +66,8 @@ def render_page(change_page):
         st.write('')
 
 
-
     if st.button("분석 시작"):
-        with st.spinner('로딩중...'):
+        with st.spinner('로딩중... (약 2분 소요)'):
             # 로딩 작업 수행
             news_data, images = make_lda_wc(section,topic_num)  # images는 로컬 파일 경로 리스트
             
@@ -85,7 +82,6 @@ def render_page(change_page):
                     article = topic[j]
                     with st.expander(list(article.values())[0]['title']):
                         st.write(list(article.values())[0]['body'])
-
   
             a = st.success('완료')
             time.sleep(1)
