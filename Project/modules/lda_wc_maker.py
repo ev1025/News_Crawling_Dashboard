@@ -41,19 +41,34 @@ def lda_func(section, num_topics):
     texts = [preprocess_korean_text(article['title'] + " " + article['body']) for article in news_data]
 
     # 사전(Dictionary) 생성 - 단어와 ID 매핑
-    dictionary = corpora.Dictionary(texts) # gensim.corpora.Dictionary를 사용해 
+    dictionary = corpora.Dictionary(texts) # 각 단어에 id부여 {'단어1': 0(단어1 id), '단어2':1(단어2 id) ....} dictionary.token2id로 확인
 
     # BOW (Bag of Words) 코퍼스 생성 - 백터화
-    corpus = [dictionary.doc2bow(text) for text in texts]
+    corpus = [dictionary.doc2bow(text) for text in texts] # 각 기사별 단어의 빈도수[(단어 id, 빈도수 ), (단어 id, 빈도수)...]
 
     # LDA 모델 학습
-    lda_model = models.LdaModel(corpus,                # (term_id, term_frequency) 사전에 등록된 번호, 빈도
+    lda_model = models.LdaModel(corpus,                
                                 num_topics=num_topics, # 모델이 학습할 주제 수(뉴스는 10~20개 적절)
-                                id2word=dictionary,    # 말뭉치의 term id를 실제 단어와 매칭
+                                id2word=dictionary,    # 말뭉치의 단어 id를 실제 단어와 매칭
                                 passes=10,             # 학습 횟수
                                 random_state=42)
-    return lda_model, corpus, dictionary, news_data
+    return lda_model, corpus, news_data
 
+
+def get_topic__articles(lda_model, corpus, news_data, num_topics):
+    topic_articles = {i: [] for i in range(num_topics)}
+
+    # 가장 관련성 높은 토픽 dict에 (토픽관련성 : 기사내용)형식으로 삽입
+    for idx, doc in enumerate(corpus):
+        topic_distribution = lda_model[doc]
+        dominant_topic = max(topic_distribution, key=lambda x: x[1])  # 관련이 높은 토픽과 관련도(토픽id, 관련도)
+        topic_articles[dominant_topic[0]].append({dominant_topic[1] : news_data[idx]})
+    
+    # 관련도 순으로 정렬
+    for topic in range(num_topics):
+        topic_articles[topic] = sorted(topic_articles[topic], key = lambda x: list(x.keys()), reverse=True)
+
+    return topic_articles
 
 
 ## 전체 데이터 넣고 싶다면 
@@ -89,9 +104,15 @@ def make_wc(section, num_topics, lda_model):
 
 # LDA + 워드클라우드 실행 함수
 
-def make_lda_wc(section):
-    num_topics = 3
-    lda_model, corpus, dictionary, news_data = lda_func(section, num_topics)
+def make_lda_wc(section, num_topics):
+    
+    # LDA
+    lda_model, corpus, news_data = lda_func(section, num_topics)
+
+    # 워드클라우드 이미지
     images = make_wc(section, num_topics, lda_model)
 
-    return news_data, images
+    # 토픽별 관련도 높은 기사
+    topic_articles = get_topic__articles(lda_model, corpus, news_data, num_topics)
+
+    return topic_articles, images

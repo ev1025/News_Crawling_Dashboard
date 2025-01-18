@@ -12,15 +12,7 @@ def render_page(change_page):
 
     st.markdown("""
     <style>
-        /* 워드클라우드 호버 */
-        [data-testid="stHorizontalBlock"] img {
-        transition: transform 0.3s ease;
-        }
-        [data-testid="stHorizontalBlock"] img:hover {
-        transform: scale(1.8);
-        position: relative;
-        z-index: 9999;
-        }
+
                 
         /* 기사 더보기 */
         span.st-emotion-cache-pkbazv.e11k5jya0 > div[data-testid="stMarkdownContainer"] p {
@@ -37,7 +29,7 @@ def render_page(change_page):
         margin: 0px;
         padding : 0px
         }
-</style>
+    </style>
     """, unsafe_allow_html=True)
 
     section_list = ["정치", "경제", "사회", "생활/문화", "IT/과학", "세계"]
@@ -50,25 +42,48 @@ def render_page(change_page):
     
     st.image("images/nnews.png")
     st.header('최신 뉴스 토픽', ) 
-    st.write("Today:", formatted_today)
+    st.markdown(
+        f"""
+        <div style="text-align: right; font-size: 20px;">
+            Today: {formatted_today}
+        </div>
+        """,
+        unsafe_allow_html=True)
     
-    section = st.selectbox("궁금하신 테마를 선택하세요.", section_list)
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        section = st.selectbox("테마", section_list)  # Section 선택
+
+    with col2:
+        topic_num = st.selectbox("토픽 수", [i for i in range(1, 6)])  # Topic 수 선택
+    
+    with col3:
+        st.write('')
+    
+    with col4:
+        st.write('')
+
+
 
     if st.button("분석 시작"):
         with st.spinner('로딩중...'):
-            # 여기서 로딩 작업 수행 (예: 시간이 걸리는 작업)
-            news_data, images = make_lda_wc(section)  # images는 로컬 파일 경로 리스트
-            col_widths = [1, 1, 1]  # 열 비율 설정 (1:1:1:1:1)
-            cols = st.columns(col_widths)
+            # 로딩 작업 수행
+            news_data, images = make_lda_wc(section,topic_num)  # images는 로컬 파일 경로 리스트
+            
+            # 워드클라우드와 기사 표시
+            for idx, (topic, img) in enumerate(zip(news_data.values(), images)):
+                # 워드클라우드 표시
+                st.image(img, use_container_width=True)
 
-            for idx, img in enumerate(images):
-                with cols[idx]:
-                    st.image(img, use_container_width=True)  # 로컬 파일 경로를 바로 사용
+                # 기사 표시
+                st.subheader(f'Topic {idx + 1} 관련기사')
+                for j in range(5):
+                    article = topic[j]
+                    with st.expander(list(article.values())[0]['title']):
+                        st.write(list(article.values())[0]['body'])
 
-            st.header("최신 기사")
-            for num in range(5):
-                with st.expander(f'{news_data[num]["title"]}'):
-                    st.write(f'{news_data[num]["body"]}')
+  
             a = st.success('완료')
             time.sleep(1)
             a.empty()
