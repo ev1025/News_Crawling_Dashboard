@@ -1,5 +1,5 @@
 # [Streamlit 대시보드] 네이버 뉴스와 수치형 데이터 시각화
-<a href="https://ev1025-news-crawling-dashboard-projectapp-xrldlx.streamlit.app/">
+<a href="https://ev1025-news-crawling-dashboard-projectapp-ek6pew.streamlit.app/">
 <img width="485" alt="image" src="https://github.com/user-attachments/assets/e6f58d1e-d677-40ed-bdde-61c13486869f" />
 </a>
 <p><u><em>이미지를 클릭하시면 대시보드로 이동합니다!</em></u></p>
@@ -97,7 +97,7 @@
 
 <br>
 
-## [Streamlit](https://ev1025-news-crawling-dashboard-projectapp-xrldlx.streamlit.app/)
+## [Streamlit](https://ev1025-news-crawling-dashboard-projectapp-ek6pew.streamlit.app/)
 
 ### 1) 홈 화면
 - 사이드 바로 페이지 선택 가능
