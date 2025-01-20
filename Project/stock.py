@@ -34,7 +34,7 @@ def render_page(change_page):
 
     # 종목명 선택 셀렉트 박스 추가
     stock_names = top_100_stocks['종목명'].tolist() 
-    selected_stock = st.selectbox("종목을 선택하세요:", stock_names)
+    selected_stock = st.selectbox("종목을 선택하세요:   2025년 1월 14일 기준", stock_names)
 
     # 선택한 종목의 데이터 필터링
     selected_row = top_100_stocks[top_100_stocks['종목명'] == selected_stock]
