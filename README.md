@@ -1,4 +1,4 @@
-# [Streamlit 대시보드] 네이버 뉴스와 수치형 데이터 시각화
+# [Streamlit 대시보드] 실시간 뉴스 토픽 분석 및 주식 차트 분석
 <a href="https://ev1025-news-crawling-dashboard-projectapp-ek6pew.streamlit.app/">
 <img width="485" alt="image" src="https://github.com/user-attachments/assets/e6f58d1e-d677-40ed-bdde-61c13486869f" />
 </a>
