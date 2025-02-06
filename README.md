@@ -102,8 +102,10 @@
 ### 1) 홈 화면
 - 사이드 바로 페이지 선택 가능
   
-<img width="485" alt="image" src="https://github.com/user-attachments/assets/21e2b4fb-6302-4a6b-b857-004c8c5782eb" />
+<img width="485" alt="image" src="https://github.com/user-attachments/assets/21e2b4fb-6302-4a6b-b857-004c8c5782eb" >
 
+<br>
+<br>
 
   
 ### 2) 뉴스 크롤링 화면
@@ -117,6 +119,7 @@
      
      <img width="485" alt="image" src="https://github.com/user-attachments/assets/6593afc2-edb8-4cbc-95b7-6c4abd00bbc0" />
 
+<br>
 
 ### 3) 수치 데이터 시각화 화면
 **주식 & # 차트**   
